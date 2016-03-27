@@ -1,0 +1,15 @@
+name: Tinfoil
+description: Make players perform commands.
+author: StarTux
+version: 0.1
+main: com.winthier.tinfoil.TinfoilPlugin
+depend: []
+commands:
+  tinfoil:
+    description: Make a player perform a command.
+    usage: /<command> <player> <command...>
+    permission: tinfoil.tinfoil
+permissions:
+  tinfoil.tinfoil:
+    description: Use the "/tinfoil" command.
+    default: op
