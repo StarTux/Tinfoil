@@ -5,19 +5,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
-public class TinfoilPlugin extends JavaPlugin {
+public final class TinfoilPlugin extends JavaPlugin {
     @Override
-    public void onEnable() {
-    }
-
-    @Override
-    public void onDisable() {
-    }
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String args[]) {
+    public boolean onCommand(CommandSender sender,
+                             Command command, String label, String[] args) {
         if (args.length < 2) return false;
         final Player player = getServer().getPlayer(args[0]);
         if (player == null) {
@@ -29,13 +21,13 @@ public class TinfoilPlugin extends JavaPlugin {
             sb.append(" ").append(args[i]);
         }
         String commandLine = sb.toString();
-        new BukkitRunnable() {
-            @Override public void run() {
+        getServer().getScheduler().runTask(this, () -> {
                 player.performCommand(commandLine);
-            }
-        }.runTask(this);
-        getLogger().info(sender.getName() + " made " + player.getName() + " type: /" + commandLine);
-        sender.sendMessage("" + ChatColor.YELLOW + "Made " + player.getName() + " type: /" + commandLine);
+            });
+        getLogger().info(sender.getName() + " made " + player.getName()
+                         + " type: /" + commandLine);
+        sender.sendMessage(ChatColor.YELLOW + "Made " + player.getName()
+                           + " type: /" + commandLine);
         return true;
     }
 }

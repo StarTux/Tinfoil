@@ -7,7 +7,7 @@ depend: []
 commands:
   tinfoil:
     description: Make a player perform a command.
-    usage: /<command> <player> <command...>
+    usage: /tinfoil <player> <command...>
     permission: tinfoil.tinfoil
 permissions:
   tinfoil.tinfoil:
